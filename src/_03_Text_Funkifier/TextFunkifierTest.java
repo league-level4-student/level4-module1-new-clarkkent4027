@@ -29,7 +29,7 @@ public class TextFunkifierTest {
         assertEquals("tHiS Is aLsO A TeSt", mcs.funkifyText());
     }
 
-    /**
+    /**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  hi 
      * 3. Make your own class similar to the previous classes that implements
      * TextFunkifier and has a private String member variable called
      * unfunkifiedText.
