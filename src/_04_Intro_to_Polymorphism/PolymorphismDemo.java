@@ -9,31 +9,34 @@ import java.util.ArrayList;
  */
 
 abstract class Animal {
-    public void speak() {
-        System.out.println("I am an animal");
-    }
+	public void speak() {
+		System.out.println("I am an animal");
+	}
 }
 
 class Dog extends Animal {
-    public void speak() {
-        System.out.println("Woof!");
-    }
+	public void speak() {
+		System.out.println("Woof!");
+	}
+	public void eat() {
+		System.out.println("Yummy!-I love dog treatz :)");
+	}
 }
 
 class Bird extends Animal {
-    public void speak() {
-        System.out.println("Tweet!");
-    }
+	public void speak() {
+		System.out.println("Tweet!");
+	}
 }
 
 class Fish extends Animal {
-    public void speak() {
-        System.out.println("Gurgle Gurgle Gurgle!");
-    }
+	public void speak() {
+		System.out.println("Gurgle Gurgle Gurgle!");
+	}
 }
 
 public class PolymorphismDemo {
-    public static void main(String[] args) {
+	public static void main(String[] args) {
 
         /*
          * Since Animal is an abstract class it cannot be instantiated normally.
@@ -46,8 +49,10 @@ public class PolymorphismDemo {
          * declared as an Animal on the left side.
          */
 
-        Animal animal = new Animal();
-
+        Animal animal = new Dog();
+        		
+animal.speak();
+((Dog) animal).eat();
         /*
          * 2. Call the speak method and run the program.
          * 
