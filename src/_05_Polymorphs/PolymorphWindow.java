@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -62,13 +63,20 @@ public class PolymorphWindow extends JPanel implements ActionListener {
 
 	Polymorph bluePoly;
 	Polymorph redPoly;
+	Polymorph moveMorph;
+	Polymorph mickeePoly;
+	Polymorph messPoly;
+	ArrayList<Polymorph> morphList = new ArrayList<Polymorph>();
 
 	public static void main(String[] args) {
 		new PolymorphWindow().buildWindow();
 	}
 
 	public void buildWindow() {
-		window = new JFrame("IT'S MORPHIN' TIME!");
+		window = new JFrame("POWER RANGERS, IT'S MORPHIN' TIME!!! LEEETTTTS GOOOOOOOOOOOO!!!!!!!!!!!"
+				+ "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!123456 Red Ranger (Jason), Blue Ranger (Billy) , "
+				+ "Black Ranger (Zachary), Pink Ranger (Kimberly), Yellow Ranger (Trini), Green Ranger(Tommy), goooooo!!!!"
+				+ " ZORDS COMBINEEEE!!!!!!!!!!!!< MEGAZORD ATTACKKKKKKKK!$!$!$!$!$!!$!  VICOTRY IS OURRSS!!!!!!!!!@#$%^&*()");
 		window.add(this);
 		window.getContentPane().setPreferredSize(new Dimension(500, 500));
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -77,8 +85,17 @@ public class PolymorphWindow extends JPanel implements ActionListener {
 
 		bluePoly = new BluePolymorph(50, 50);
 		redPoly = new RedPolymorph(50, 50, getHeight(), getWidth());
+		moveMorph = new MovingMorph(50, 50, getHeight(), getWidth());
+		mickeePoly = new MickeyPolymorph(50, 50, getHeight(), getWidth());
+		messPoly = new MessagePolymorph(50, 50, getHeight(), getWidth());
 		timer = new Timer(1000 / 30, this);
 		timer.start();
+
+		morphList.add(bluePoly);
+		morphList.add(moveMorph);
+		morphList.add(redPoly);
+		morphList.add(mickeePoly);
+		morphList.add(messPoly);
 	}
 
 	public void paintComponent(Graphics g) {
@@ -87,14 +104,27 @@ public class PolymorphWindow extends JPanel implements ActionListener {
 		g.fillRect(0, 0, 500, 500);
 
 		// draw polymorph
-		bluePoly.draw(g);
-		redPoly.draw(g);
+		int x = 1;
+		while (x > 0) {
+			bluePoly.draw(g);
+			redPoly.draw(g);
+			moveMorph.draw(g);
+			mickeePoly.draw(g);
+			messPoly.draw(g);
+		}
+
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		repaint();
-		bluePoly.update();
-
+		int y = 1;
+		while (y > 0) {
+			repaint();
+			bluePoly.update();
+			moveMorph.update();
+			redPoly.update();
+			mickeePoly.update();
+			messPoly.update();
+		}
 	}
 }
