@@ -4,17 +4,14 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 
-public class BluePolymorph extends Polymorph {
+public class RedPolymorph extends Polymorph {
 
-	public BluePolymorph(int x, int y) {
+	public RedPolymorph(int x, int y, int height, int width) {
 		super(x, y, 50, 50);
-		setwidth(50);
-		setheight(50);
 	}
-
 	@Override
 	public void draw(Graphics g) {
-		g.setColor(Color.BLUE);
+		g.setColor(Color.RED);
 		g.drawRect(x, y, width, height);
 		g.fillRect(x, y, width, height);
 	}
@@ -66,5 +63,4 @@ public class BluePolymorph extends Polymorph {
 		
 	}
 
-	
 }

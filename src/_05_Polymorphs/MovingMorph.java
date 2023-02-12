@@ -4,24 +4,22 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 
-public class BluePolymorph extends Polymorph {
+public class MovingMorph extends Polymorph {
 
-	public BluePolymorph(int x, int y) {
-		super(x, y, 50, 50);
-		setwidth(50);
-		setheight(50);
+	public MovingMorph(int x, int y, int height, int width) {
+		super(x, y, width, height);
 	}
-
 	@Override
 	public void draw(Graphics g) {
-		g.setColor(Color.BLUE);
+		g.setColor(Color.YELLOW);
 		g.drawRect(x, y, width, height);
 		g.fillRect(x, y, width, height);
 	}
 
 	@Override
 	public void update() {
-
+		setx(getx() + 5);
+		sety(gety() + 5);
 	}
 
 	@Override
@@ -66,5 +64,4 @@ public class BluePolymorph extends Polymorph {
 		
 	}
 
-	
 }

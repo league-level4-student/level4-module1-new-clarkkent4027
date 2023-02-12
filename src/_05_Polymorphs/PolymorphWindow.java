@@ -5,9 +5,13 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -53,7 +57,7 @@ import javax.swing.Timer;
  *  clicked. Hint: MouseListener interface.
  */
 
-public class PolymorphWindow extends JPanel implements ActionListener {
+public class PolymorphWindow extends JPanel implements ActionListener, MouseMotionListener, MouseListener {
 
 	public static final int WIDTH = 900;
 	public static final int HEIGHT = 600;
@@ -61,18 +65,27 @@ public class PolymorphWindow extends JPanel implements ActionListener {
 	private JFrame window;
 	private Timer timer;
 
-	Polymorph bluePoly;
-	Polymorph redPoly;
-	Polymorph moveMorph;
-	Polymorph mickeePoly;
-	Polymorph messPoly;
-	ArrayList<Polymorph> morphList = new ArrayList<Polymorph>();
+	static Polymorph bluePoly = new BluePolymorph(50, 50);
+	static Polymorph redPoly = new RedPolymorph(175, 175, 50, 50);
+	static Polymorph moveMorph = new MovingMorph(250, 250, 50, 50);
+	static Polymorph mickeePoly = new MickeyPolymorph(350, 350, 50, 50);
+	static Polymorph messPoly = new MessagePolymorph(400, 400, 50, 50);
+
+	static ArrayList<Polymorph> morphList = new ArrayList<Polymorph>();
 
 	public static void main(String[] args) {
 		new PolymorphWindow().buildWindow();
+		morphList.add(bluePoly);
+		morphList.add(moveMorph);
+		morphList.add(redPoly);
+		morphList.add(mickeePoly);
+		morphList.add(messPoly);
+
 	}
 
 	public void buildWindow() {
+		timer = new Timer(1000 / 30, this);
+		timer.start();
 		window = new JFrame("POWER RANGERS, IT'S MORPHIN' TIME!!! LEEETTTTS GOOOOOOOOOOOO!!!!!!!!!!!"
 				+ "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!123456 Red Ranger (Jason), Blue Ranger (Billy) , "
 				+ "Black Ranger (Zachary), Pink Ranger (Kimberly), Yellow Ranger (Trini), Green Ranger(Tommy), goooooo!!!!"
@@ -81,50 +94,83 @@ public class PolymorphWindow extends JPanel implements ActionListener {
 		window.getContentPane().setPreferredSize(new Dimension(500, 500));
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.pack();
+		window.addMouseMotionListener(this);
+		window.addMouseListener(this);
 		window.setVisible(true);
 
-		bluePoly = new BluePolymorph(50, 50);
-		redPoly = new RedPolymorph(50, 50, getHeight(), getWidth());
-		moveMorph = new MovingMorph(50, 50, getHeight(), getWidth());
-		mickeePoly = new MickeyPolymorph(50, 50, getHeight(), getWidth());
-		messPoly = new MessagePolymorph(50, 50, getHeight(), getWidth());
-		timer = new Timer(1000 / 30, this);
-		timer.start();
-
-		morphList.add(bluePoly);
-		morphList.add(moveMorph);
-		morphList.add(redPoly);
-		morphList.add(mickeePoly);
-		morphList.add(messPoly);
 	}
 
 	public void paintComponent(Graphics g) {
 		// draw background
 		g.setColor(Color.LIGHT_GRAY);
-		g.fillRect(0, 0, 500, 500);
+		g.drawRect(0, 0, 900, 600);
+		g.fillRect(0, 0, 900, 600);
 
 		// draw polymorph
-		int x = 1;
-		while (x > 0) {
-			bluePoly.draw(g);
-			redPoly.draw(g);
-			moveMorph.draw(g);
-			mickeePoly.draw(g);
-			messPoly.draw(g);
-		}
+
+		bluePoly.draw(g);
+		redPoly.draw(g);
+		moveMorph.draw(g);
+		mickeePoly.draw(g);
+		messPoly.draw(g);
 
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		int y = 1;
-		while (y > 0) {
-			repaint();
-			bluePoly.update();
-			moveMorph.update();
-			redPoly.update();
-			mickeePoly.update();
-			messPoly.update();
+
+		repaint();
+		bluePoly.update();
+		moveMorph.update();
+		redPoly.update();
+		mickeePoly.update();
+		messPoly.update();
+
+	}
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		// TODO Auto-generated method stub
+mickeePoly.x = e.getX();
+mickeePoly.y = e.getY();
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		if (e.getX()>420 && e.getX()<470 && e.getY()>420 && e.getY()<470 ){
+			JOptionPane.showMessageDialog(null, "MEssAGe polYmorph wUz heRe!");
 		}
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+
 	}
 }
