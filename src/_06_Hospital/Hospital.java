@@ -14,24 +14,32 @@ public class Hospital {
 		unassignedPatients.add(patient);
 	}
 
-	public ArrayList getDoctor() {
+	public ArrayList getDoctors() {
 		return Doctors;
 	}
 
-	public ArrayList getPatient() {
+	public ArrayList getPatients() {
 		return unassignedPatients;
 	}
 
 	public void assignPatientsToDoctors() throws DoctorFullException {
 		// TODO Auto-generated method stub
-		if (unassignedPatients.size() > Doctors.size() * 3) {
-			throw new DoctorFullException();
-		}
+
 		for (int i = 0; i < Doctors.size(); i++) {
-			for (int j = 0; j < 3; j++) {
+			while (Doctors.get(i).assignedPatients.size() < 3 && unassignedPatients.size()>0) {
+				System.out.println(Doctors.get(i).assignedPatients.size());
+				Doctors.get(i).assignPatient(unassignedPatients.remove(0));
 
 			}
-		}
+			if (Doctors.get(i).assignedPatients.size() > 3) {
+				throw new DoctorFullException();
 
+			} else if (unassignedPatients.size() == 0) {
+
+				break;
+
+			}
+
+		}
 	}
 }

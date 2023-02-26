@@ -43,11 +43,11 @@ public abstract class Doctor extends Patient {
 		}
 
 		@Override
-		public void assignPatient(Patient patient) throws DoctorFullException{
+		public void assignPatient(Patient patient) throws DoctorFullException {
 			// TODO Auto-generated method stub
 			if (assignedPatients.size() < 3) {
 				assignedPatients.add(patient);
-				System.out.println(assignedPatients.size());
+				//System.out.println(assignedPatients.size());
 			} else {
 				System.out.println("Exception.");
 				throw new DoctorFullException();
